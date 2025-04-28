@@ -92,6 +92,8 @@ Endpoint	            Method	Purpose
 | `/planner/generate` | POST | Generate smart AI meal plan based on calendar + preferences |
 | `/user/get-meal-history` | GET | Retrieve user's past meal plans |
 | `/user/grocery-list` | GET | Generate a grocery shopping list for today's meals |
+| `/user/analytics` | GET | Generate an AI summary of analytics based on past user history and data |
+
 
 ---
 
