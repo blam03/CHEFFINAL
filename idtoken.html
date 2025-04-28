@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase ID Token Generator</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+</head>
+<body>
+  <h1>Firebase ID Token Generator</h1>
+
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="signIn()">Sign In & Get ID Token</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    // TODO: Replace with YOUR Firebase project config
+    const firebaseConfig = {
+        apiKey: "AIzaSyBzkCIHx8fDazOcKgQhO6ar5-YsAEeMFnE",
+        authDomain: "chef-7171a.firebaseapp.com",
+        projectId: "chef-7171a",
+        appId: "1:1080218719054:web:42fb1fa31f0a5d6c31c41f",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    async function signIn() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const output = document.getElementById('output');
+
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const idToken = await userCredential.user.getIdToken();
+        output.textContent = `Bearer ${idToken}`;
+      } catch (error) {
+        output.textContent = `Error: ${error.message}`;
+      }
+    }
+  </script>
+</body>
+</html>
